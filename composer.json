@@ -1,0 +1,10 @@
+{
+    "name": "dimandr/yeticave.ua",
+    "description": "Website yeticave.ua",
+    "type": "project",
+    "minimum-stability" : "dev",
+    "license": "MIT",
+    "require": {
+        "wixel/gump": "dev-master"
+    }
+}
