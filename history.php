@@ -20,11 +20,8 @@ if (isset($_COOKIE['history'])){
 	$history_lot = json_decode($_COOKIE['history']);
 }
 
-//запускаем базу данных
-$connect = mysqli_connect($db_host,$db_user,$db_password,$db_name);
-if ($connect == false){
-	print ('Ошибка подключения: '. mysqli_connect_errors());
-}
+
+
 
 $page_content=include_template('historylot.php',[
 	'Arr1'=>$Arr1,

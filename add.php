@@ -20,18 +20,23 @@ else {
 }
 
 //запускаем базу данных
-$connect = mysqli_connect($db_host,$db_user,$db_password,$db_name);
-if ($connect == false){
-    print ('Ошибка подключения: '. mysqli_connect_errors());
-}
+//$connect = mysqli_connect($db_host,$db_user,$db_password,$db_name);
+//if ($connect == false){
+//    print ('Ошибка подключения: '. mysqli_connect_errors());
+//}
 
+// запускаем базу данных ООП
+$connect = new mysqli('localhost','root','','yeticave');
+if ($connect->connect_errno) {
+    die ('Ошибка подключения: '. $connect->connect_error);
+}
 //добавление лота
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$addlot=$_POST;
 
 	$required= [
-		'lot-name',	
-		'category', 
+		'lot-name',
+		'category',
 		'message',
 		'lot-rate',
 		'lot-step',
@@ -52,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Проверяем наличие данных в форме. Если их нет - заполняем массив $errors.
 	foreach ($required as $value) {
 		if(empty($addlot[$value])){
-			$errors[$value] ='Заполни поле'; 
+			$errors[$value] ='Заполни поле';
 		}
 	}
 
@@ -89,16 +94,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 		else {
 			$errors['filename'] = 'Загрузите файл в формате jpeg/png';
-		}	
-		
+		}
+
 	}
 
 	if (count($errors)) {
 		$page_content = include_template('addlot.php', [
-			'addlot' => $addlot, 
-			'errors' => $errors, 
+			'addlot' => $addlot,
+			'errors' => $errors,
 			// 'error_descr' => $error_descr,
-			'is_auth'=>$is_auth, 
+			'is_auth'=>$is_auth,
 			'user_name' =>$user_name,
 			'CategoriesArr'=> $CategoriesArr
 		]);
@@ -117,9 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     	// Категория из другой таблицы.
     	$category = $addlot['category'];
     	$category = (string)$category;
-    	$sqlcat =  "SELECT * FROM `categories`";
-    	$sqlres = mysqli_query($connect, $sqlcat);
-    	$rescat = mysqli_fetch_all($sqlres, MYSQLI_ASSOC);
+//    	$sqlcat =  "SELECT * FROM `categories`";
+//    	$sqlres = mysqli_query($connect, $sqlcat);
+//    	$rescat = mysqli_fetch_all($sqlres, MYSQLI_ASSOC);
+        $sqlcat = $connect->query("SELECT * FROM `categories`");
+        $rescat = $sqlcat->fetch_all(MYSQLI_ASSOC);
     	foreach ($rescat as $val){
     		if (($category)== ($val['cat_name'])){
     			$category = $val['cat_id'];
@@ -127,22 +134,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     		}
     	}
 
-    	$sql = "INSERT INTO `products` SET 
-    	`product_name`='$lot_name', 
-    	`category` = '$category', 
-    	`start_price`='$start_price', 
+    	$sql = "INSERT INTO `products` SET
+    	`product_name`='$lot_name',
+    	`category` = '$category',
+    	`start_price`='$start_price',
     	`price`='$start_price',
     	`rate`='$rate',
     	`URL_picture` = '$URL_picture',
     	`data`='$date',
     	`author`='$author',
     	`state` = 'open'";
-
-    	if (!mysqli_query($connect, $sql)){
-    		echo 'Ошибка: ' . mysqli_error($connect);
+        $success= $connect->query($sql);
+    	if (!$success){
+    		echo 'Ошибка: ' . $connect->error;
     	}
     	else{
-    	$lot_id = mysqli_insert_id($connect);
+    	$lot_id = $connect->insert_id;
     	header("Location:/lot.php?lot_id=" . $lot_id);
     	}
     }

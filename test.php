@@ -63,5 +63,6 @@ $layout_content = include_template('layout.php', [
 	'CategoriesArr' => $CategoriesArr,
 	'title' => 'Test',
 ]);
-print($layout_content);	
+print($layout_content);
+
 ?>

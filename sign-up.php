@@ -17,6 +17,7 @@ if ($connect->connect_errno) {
 }
 
 
+
 //проверка или пользователь вошел в профиль
 //Запускаем сессию
 
@@ -25,7 +26,7 @@ header('Location:/index.php');
 
 }
 
-// Регистрация 
+// Регистрация
 if ($_SERVER['REQUEST_METHOD']=='POST'){
 	$regdata = $_POST;
 
@@ -40,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 
 	foreach ($required as $val){
 		if (empty($regdata[$val])){
-			$errors[$val] = 'Введите данные'; 
+			$errors[$val] = 'Введите данные';
 		}
 	}
 
@@ -51,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 	if (strlen($regdata['name']) < 3){
 		$errors['name'] = 'В имени должно быть не меньше 3 символов';
 	}
-	
+
 
 	// Проверка email по функции
 	// $user = searchUserByEmail($regdata['email'], $users);
@@ -72,10 +73,10 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 		if ($user['email'] == $email) {
 			$errors['email'] = 'Пользователь с таким email уже существует';
 		}
-		else 
+		else
 			if (filter_var($regdata['email'], FILTER_VALIDATE_EMAIL)== false){
 	 		$errors['email'] = 'Введите корректный email';
-	 	}  
+	 	}
 	}
 
 
@@ -98,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 		}
 		else {
 			$error_avatar['avatar'] = 'Загрузите файл в формате jpeg/png';
-		}	
+		}
     }
 
     if (count($errors)){
@@ -123,10 +124,10 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
     	// 	echo 'Ошибка: ' . mysqli_error($connect);
     	// }
 
-    	$sql1=$connect->query("INSERT INTO `users` SET 
-    		`user_name`='$name', 
-    		`password` = '$password', 
-    		`email`='$email', 
+    	$sql1=$connect->query("INSERT INTO `users` SET
+    		`user_name`='$name',
+    		`password` = '$password',
+    		`email`='$email',
     		`message`='$message'");
 		if(!$sql1){
 			echo 'Ошибка: ' . $connect->connect_errors();
@@ -136,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
     }
 
 
-} 
+}
 else {
 	$page_content=include_template('sign-uppage.php',[
 	'Arr1'=>$Arr1]);
