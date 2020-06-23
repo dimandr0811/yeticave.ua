@@ -47,7 +47,7 @@ insert into products set
 	URL_picture = 'img/lot-1.jpg' ,
 	data = null,
 	state = 'open',
-	author = NULL;
+	author = 1;
 
 insert into products set
 	product_name = 'DC Ply Mens 2016/2017 Snowboard',
@@ -58,7 +58,7 @@ insert into products set
 	URL_picture = 'img/lot-2.jpg' ,
 	data = null,
 	state = 'open',
-	author = NULL;
+	author = 1;
 
 insert into products set
 	product_name = 'Крепления Union Contact Pro 2015 года размер L/XL',
@@ -69,7 +69,7 @@ insert into products set
 	URL_picture = 'img/lot-3.jpg' ,
 	data = null,
 	state = 'open',
-	author = NULL;
+	author = 1;
 
 insert into products set
 	product_name = 'Ботинки для сноуборда DC Mutint Charocal',
@@ -80,7 +80,7 @@ insert into products set
 	URL_picture = 'img/lot-4.jpg' ,
 	data = null,
 	state = 'open',
-	author = NULL;
+	author = 1;
 
 insert into products set
 	product_name = 'Куртка для сноуборда DC Mutiny Charocal',
@@ -91,7 +91,7 @@ insert into products set
 	URL_picture = 'img/lot-5.jpg' ,
 	data = null,
 	state = 'open',
-	author = NULL;
+	author = 1;
 
 insert into products set
 	product_name = 'Маска Oakley Canopy',
@@ -99,18 +99,11 @@ insert into products set
 	start_price = 5400,
 	price = 5400,
 	rate = 1,
-	URL_picture = 'img/lot-5.jpg' ,
+	URL_picture = 'img/lot-6.jpg' ,
 	data = null,
 	state = 'open',
-	author = NULL;
+	author = 1;
 
-SELECT * FROM categories;
-
-SELECT product_name, start_price, URL_picture, price, rate, category FROM products;
-
-SELECT * FROM products
-join categories on categories.cat_id = products.category
-order by product_id asc;
 
 
 

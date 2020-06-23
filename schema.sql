@@ -1,8 +1,8 @@
-create database yeticave
-	default character set utf8
-	default collate utf8_general_ci;
-
 USE yeticave;
+
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
 user_id int auto_increment primary key,
@@ -14,8 +14,9 @@ user_name varchar(128)
 
 CREATE TABLE categories (
 cat_id int auto_increment primary key,
-cat_name varchar(160)
+cat_name char(60)
 );
+
 
 CREATE TABLE products (
 product_id int auto_increment primary key,
@@ -27,7 +28,8 @@ rate int,
 URL_picture varchar(160),
 author int,
 data datetime,
-state varchar(64)
+state varchar(64),
+description varchar(255)
 );
 
 create unique index email on users(email);

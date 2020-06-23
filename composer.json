@@ -5,7 +5,8 @@
   "name": "dimandr/yeticave.ua",
   "require": {
     "wixel/gump": "dev-master",
-    "ext-mysqli": "*"
+    "ext-mysqli": "*",
+    "ext-json": "*"
   },
   "type": "project"
 }

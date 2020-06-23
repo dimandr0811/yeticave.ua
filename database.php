@@ -2,10 +2,10 @@
 
 
 /**
- * 
+ *
  */
 class database {
-	
+
 	private $db_resource;
 	private $last_error = null;
 	private $last_result;
@@ -45,7 +45,7 @@ class database {
 	public function getLastId(){
 		return mysqli_insert_id($this->db_resource);
 	}
-	
+
 	public function getNumRows(){
 		return mysqli_num_rows($this->last_result);
 	}
@@ -53,5 +53,3 @@ class database {
 }
 
 
-
-?>

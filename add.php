@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require_once('functions.php');
 // require_once('Arrays.php');
 require_once('data_base_func.php');

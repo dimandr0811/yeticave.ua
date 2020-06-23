@@ -1,5 +1,5 @@
-  <section class="lot-item container">
-    <?php if (isset($lot)):?>
+    <section class="lot-item container">
+    <?php if(isset($lot)):?>
     <h2><?=$lot['product_name'];?></h2>
     <div class="lot-item__content">
       <div class="lot-item__left">
@@ -23,14 +23,14 @@
             </div>
           </div>
           <div>
-              <span class="lot-item__amount">Рекомендуемый шаг ставки: </span> 
+              <span class="lot-item__amount">Рекомендуемый шаг ставки: </span>
               <span class="lot-item__cost"><?php print(price_format($lot['rate']));?></span>
           </div>
 
           <?php if ($is_auth==true):?>
-         
+
           <form class="lot-item__form" action="lot.php?lot_id=<?=$lot['product_id']?>" method="post">
-          
+
           <?php $errormsg = isset($errors['cost']) ? $errors['cost'] : ''; ?>
 
             <p class="lot-item__form-item">
@@ -103,13 +103,8 @@
         </div>
       </div>
     </div>
-    <?php else:?>
+   <?php else:?>
      <h1 style="color: black">Ошибка 404</h1>
-      
-    <? endif; ?>
+    <?php endif;?>
+
   </section>
-</main>
-
-
-</body>
-</html>

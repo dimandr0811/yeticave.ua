@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require_once('functions.php');
 // require_once('userdata.php');
 require_once('config/db.php');
@@ -45,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// else {
 	// 	$errors['email'] = 'Такой пользователь не найден';
 	// }
-	
+
 
 	// Проверка через базу данных
 	if (!empty($form['email'])){
@@ -55,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// $user = mysqli_fetch_array($email_result, MYSQLI_ASSOC);
 		$email_result=$connect->query("SELECT * FROM `users` WHERE `email` ='$email'");
 		$user = $email_result->fetch_array();
-		
+
 		if (!count($errors) and $user){
 			if (password_verify($form['password'], $user['password'])) {
 				$_SESSION['user']=$user;
-			} 
+			}
 			else {
 				$errors['password'] = 'Вы ввели неверный пароль';
 			}
@@ -77,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			'errors' => $errors
 		]);
 	}
-	else { 
+	else {
 		header('Location: /index.php');
 		exit();
 	}
@@ -85,8 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 else {
 	$page_content= include_template('login.php', [
-			'form' => $form,
-			'errors' => $errors
 		]);
 }
 

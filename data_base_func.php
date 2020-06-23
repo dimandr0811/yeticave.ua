@@ -25,7 +25,7 @@ else{
 	$db->executeQuery("SELECT
 	product_id,
 	product_name,
-	price, 
+	price,
 	URL_picture,
 	start_price,
 	rate,
@@ -49,7 +49,7 @@ else{
 	$db->executeQuery("SELECT
 	product_id,
 	product_name,
-	price, 
+	price,
 	URL_picture,
 	start_price,
 	rate,
@@ -86,7 +86,7 @@ else{
 // $sql_product = "SELECT
 // product_id,
 // product_name,
-// price, 
+// price,
 // URL_picture,
 // start_price,
 // rate,
@@ -106,7 +106,7 @@ else{
 // $sql_product = "SELECT
 // product_id,
 // product_name,
-// price, 
+// price,
 // URL_picture,
 // start_price,
 // rate,
@@ -120,4 +120,4 @@ else{
 // order by product_id asc";
 // $result_product = mysqli_query($connect, $sql_product);
 // $lot = mysqli_fetch_all($result_product, MYSQLI_ASSOC);
-?>
+

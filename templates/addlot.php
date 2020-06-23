@@ -3,10 +3,10 @@
 <form class="form form--add-lot container <?=$classname;  ?>" action="add.php" method="POST" enctype="multipart/form-data"> <!-- form--invalid -->
     <h2>Добавление лота</h2>
     <div class="form__container-two">
-      
-    <?php $classname = isset($errors['lot-name']) ? "form__item--invalid" : ""; 
+
+    <?php $classname = isset($errors['lot-name']) ? "form__item--invalid" : "";
     $value = isset($addlot['lot-name']) ? $addlot['lot-name'] : ""; ?>
-     
+
       <div class="form__item <?=$classname;?>"> <!-- form__item--invalid -->
         <label for="lot-name">Наименование</label>
         <input id="lot-name" type="text" name="lot-name" placeholder="Введите наименование лота" value = "<?=$value;?>">
@@ -14,16 +14,14 @@
       </div>
 
       <?php $classname = isset($errors['category']) ? "form__item--invalid" : ""; ?>
-      <option><?=$selected;?></option>
       <div class="form__item <?=$classname;?>">
         <label for="category">Категория</label>
         <select id="category" name="category" >
-          <option <?=$selected;?>>Выберите из списка</option>
+          <option>Выберите из списка</option>
           <?php foreach ($CategoriesArr as $value): ?>
             <? if (isset($addlot['category']) && $addlot['category']==$value['cat_name']): ?>
               <option selected><?=$value['cat_name'];?></option>
             <? endif;?>
-          <option><?=$value['cat_name'];?></option>
           <?php endforeach;?>
 <!--           <option>Крепления</option>
           <option>Ботинки</option>
@@ -67,9 +65,9 @@
     </div>
 
     <div class="form__container-three">
-        
+
       <?php $classname = isset($errors['lot-rate']) ? "form__item--invalid" : "";
-      $value = isset($addlot['lot-rate']) ? $addlot['lot-rate'] : ""; 
+      $value = isset($addlot['lot-rate']) ? $addlot['lot-rate'] : "";
       $errormsg = isset($errors['lot-rate']) ? $errors['lot-rate'] : ''; ?>
 
       <div class="form__item form__item--small <?=$classname;?>">

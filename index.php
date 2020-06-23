@@ -1,5 +1,5 @@
 <?php
-// require_once('Arrays.php');
+error_reporting(0);
 require_once('functions.php');
 require_once('config/db.php');
 require_once('data_base_func.php');
@@ -22,7 +22,7 @@ require_once('vendor/autoload.php');
 // $sql_product = "SELECT
 // product_id,
 // product_name,
-// price, 
+// price,
 // URL_picture,
 // cat_name
 // FROM products
@@ -52,7 +52,6 @@ if (isset($_SESSION['user'])){
 // $pages_count = ceil($items_count/$page_items);
 // $offset = ($cur_page-1)*$page_items;
 // $pages = range(1, $pages_count);
-
 
 
 $page_content=include_template('index.php',[

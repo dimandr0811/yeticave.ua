@@ -1,7 +1,7 @@
 <?php
+error_reporting(0);
 require_once('functions.php');
 require_once('config/db.php');
-// require_once('Arrays.php');
 require_once('data_base_func.php');
 require_once('vendor/autoload.php');
 
@@ -61,13 +61,13 @@ $ser_history= json_encode($history_lot); // сериализация масси�
 
 $name = 'history';
 $value = $ser_history;
+$expire = time();
 $path = '/';
 
 setcookie($name,$value,$expire,$path);
 
 
 // сделать ставку
-if ($_SERVER['REQUEST_METHOD'] =='POST'){
 	$rate = $_POST;
 	$errors = [];
 	if (empty($rate['cost'])) {
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] =='POST'){
 		$price = $rate['cost'];
 		$id = $lot['product_id'];
 		$sql = "UPDATE `products` SET `price`='$price' where `product_id` = '$id'";
-		
+
 		if (!mysqli_query($connect, $sql)){
     		echo 'Ошибка: ' . mysqli_error($connect);
     	}
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] =='POST'){
     	header("Location:/lot.php?lot_id=" . $id);
     	}
     	}
-	}
+
 
 
 
@@ -109,4 +109,4 @@ $layout_content = include_template('layout.php', [
 	'user_name' =>$user_name
 ]);
 print($layout_content);
-?>
+
